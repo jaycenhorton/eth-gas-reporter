@@ -241,6 +241,7 @@ async function getGasAndPriceRates (options=null) {
   }
 
   // Global to this file...
+  contractsDir = config.contractsDir || './contracts'
   currency = config.currency || 'eur'
   ethPrice = config.ethPrice || null
   gasPrice = config.gasPrice || null
@@ -309,7 +310,7 @@ function mapMethodsToContracts (truffleArtifacts) {
   const block = web3.eth.getBlock('latest');
   blockLimit = block.gasLimit;
 
-  const names = shell.ls('./contracts/**/*.sol')
+  const names = shell.ls(`${contractsDir}/**/*.sol`)
   names.forEach(name => {
     name = path.basename(name)
 
